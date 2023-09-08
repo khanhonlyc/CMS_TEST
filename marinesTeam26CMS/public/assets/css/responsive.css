@@ -1,0 +1,51 @@
+
+/* 1199 */
+
+@media screen and (max-width: 1199.5px) {
+	.full-search .input-search{
+		width: 80%;
+		margin: 50% auto;
+	}
+	.full-search .input-search {
+		position: relative;
+	}
+	.full-search .input-search input{
+		font-size: 12px;
+		width: calc(100% - 0px);
+	}
+	.full-search .input-search button{
+		font-size: 16px;
+		width: 70px;
+		position: absolute;
+		top: 0;
+		right: 0;
+		border: 0;
+	}
+	.full-search .times-search{
+		top: 20px;
+		right: 20px;
+	}
+}
+
+/* 991 */
+
+@media screen and (max-width: 991.5px) {
+	.row-vt{
+		width: 100%;
+		display: flex;
+		flex-flow: row wrap;
+		margin: auto;
+	}
+	.col-vt{
+		order: 2;
+	}
+	.icon-mobile , .search-mobile , .menu-mobile{
+		display: block !important;
+	}
+}
+
+/* 767 */
+
+@media screen and (max-width: 767.5px) {
+	
+}

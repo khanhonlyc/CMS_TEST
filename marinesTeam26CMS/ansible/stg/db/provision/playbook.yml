@@ -1,0 +1,13 @@
+---
+- hosts: all
+  connection: local
+  become: true
+  vars:
+    box: laravel
+    proxy_env:
+      http_proxy: http://10.200.101.18:8080
+      https_proxy: http://10.200.101.18:8080
+  roles:
+    - base
+    - mariadb
+  environment: "{{proxy_env}}"

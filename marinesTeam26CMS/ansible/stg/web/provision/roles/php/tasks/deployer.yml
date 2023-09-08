@@ -1,0 +1,13 @@
+---
+- name: setup Deployer
+  become_user: hotfactory
+  composer:
+    command: require
+    arguments: --dev deployer/deployer
+    working_dir: /home/hotfactory
+
+- name: add alias to .bashrc
+  become_user: hotfactory
+  shell: |
+    echo alias dep='vendor/bin/dep' >> ~/.bashrc
+    source ~/.bashrc

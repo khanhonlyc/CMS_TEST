@@ -1,0 +1,20 @@
+---
+- name: Install epel.repo
+  dnf:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+    state: present
+    disable_gpg_check: yes
+
+- name: Install remi.repo
+  dnf:
+    name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+    state: present
+    disable_gpg_check: yes
+
+- name: enable Redis 7.0 repo
+  command: dnf module enable redis:remi-7.0 -y
+
+- name: Install redis
+  dnf:
+    name: redis
+    state: latest

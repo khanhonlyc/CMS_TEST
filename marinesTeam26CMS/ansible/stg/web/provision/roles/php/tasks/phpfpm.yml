@@ -1,0 +1,29 @@
+---
+#- name: rename php-fpm
+#  command: mv /etc/rc.d/init.d/php81-php-fpm /etc/rc.d/init.d/php-fpm
+
+- name: make directory for php-fpm socket
+  file:
+    path: /var/run/php-fpm
+    state: directory
+
+- name: create directory for php-fpm socket each reboot
+  copy:
+    src: php-fpm.conf
+    dest: /usr/lib/tmpfiles.d/php-fpm.conf
+
+- name: copy www.conf
+  copy:
+    src: www.conf
+    dest: /etc/opt/remi/php81/php-fpm.d/www.conf
+
+- name: start php-fpm
+  service:
+    name: php81-php-fpm
+    state: started
+  notify: reload nginx
+
+- name: enable php-fpm
+  service:
+    name: php81-php-fpm
+    enabled: yes

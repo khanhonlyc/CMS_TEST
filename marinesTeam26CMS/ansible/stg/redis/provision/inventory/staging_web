@@ -1,0 +1,2 @@
+[webservers]
+staging_web ansible_host=10.200.102.132 ansible_user=hotfactory

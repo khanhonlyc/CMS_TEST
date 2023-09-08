@@ -1,0 +1,24 @@
+---
+- name: install base packages
+  dnf:
+    name: [git,
+           vim,
+           zip,
+           unzip]
+    lock_timeout: 120
+
+- name: delete old localtime
+  file:
+    path: /etc/localtime
+    state: absent
+
+- name:  link time zone
+  file:
+    src: /usr/share/zoneinfo/Japan
+    path: /etc/localtime
+    state: link
+
+- name: Restart crond
+  service:
+    name: crond
+    state: restarted

@@ -1,0 +1,88 @@
+
+
+.animation-1{
+	padding: 50px 0px;
+	background: #d7d7d7;
+	.content{
+		position: relative;
+		.scroll{
+			width: 50px;
+			height: 200px;
+			background: blue;
+			display: block;
+		}
+		.js-scroll1{
+			bottom: 0;
+			left: 0px;
+		}
+		.js-scroll2{
+			bottom: 0;
+			right: 0;
+			background: #ff8d00;
+			margin-left: auto;
+		}
+		.bg{
+			background: red;
+			width: 500px;
+			height: 50vh;
+			margin:0 auto;
+		}
+		.active1{
+			position: sticky;
+			top: 0;
+		}
+	}
+}
+
+.animation-2{
+	background: #fbfbfb;
+	padding: 50px 0px;
+	.content{
+		overflow: hidden;
+		padding: 50px 0px;
+	}
+	.tron{
+		width: 200px;
+		height: 200px;
+		border-radius: 50%;
+		background: blue;
+		margin:0 auto;
+		margin-bottom: 30px;
+		transform:translate(0px, -300px);
+		animation: mymove 1s;
+		animation-fill-mode: forwards;
+		transition:all .3s;
+	}
+	.vuong{
+		width: 200px;
+		height: 1px;
+		border-radius: 10px;
+		border-radius: 10px;
+		background: red;
+		margin:0 auto;
+		animation: mymove1 1s;
+		animation-delay: 0.4s;
+		animation-fill-mode: forwards;
+	}
+}
+
+@keyframes mymove {
+  0%{
+  	transform:translate(0px, -300px);
+  }
+  50%{
+  	transform:translate(0px, 30px);
+  }
+  100%{
+  	transform:translate(0px, 0px);
+  }
+}
+
+@keyframes mymove1 {
+  0%{
+  	height: 1px;
+  }
+  100%{
+  	height: 200px;
+  }
+}

@@ -1,0 +1,87 @@
+---
+- name: check if php is installed.
+  stat:
+    path: /usr/bin/php
+  register: php_bin
+
+- name: Install epel.repo
+  dnf:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+    state: present
+    disable_gpg_check: yes
+  when: not php_bin.stat.exists
+
+- name: Install remi.repo
+  dnf:
+    name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+    state: present
+    disable_gpg_check: yes
+  when: not php_bin.stat.exists
+
+- name: enable PHP 8.1 repo
+  command: dnf module enable php:remi-8.1 -y
+  when: not php_bin.stat.exists
+
+- name: Install PHP 8.1
+  dnf:
+    name: [php81,
+           php81-php-bcmath,
+           php81-php-fpm,
+           php81-php-gd,
+           php81-php-intl,
+           php81-php-json,
+           php81-php-mbstring,
+           php81-php-mysqlnd,
+           php81-php-odbc,
+           php81-php-opcache,
+           php81-php-pdo,
+           php81-php-pecl-redis5,
+           php81-php-pecl-zip,
+           php81-php-pear,
+           php81-php-devel,
+           php81-php-process,
+           php81-php-xml,
+           php81-php-xmlrpc]
+    state: present
+    lock_timeout: 120
+  when: not php_bin.stat.exists
+
+- name: copy php config
+  copy:
+    src: php.ini
+    dest: /etc/opt/remi/php81/php.d/zz-custom-php.ini
+  when: not php_bin.stat.exists
+
+- name: link php
+  file:
+    src: /usr/bin/php81
+    path: /usr/bin/php
+    state: link
+  when: not php_bin.stat.exists
+
+- name: install composer
+  include_tasks: composer.yml
+  when: box == "laravel"
+
+- name: install deployer
+  include_tasks: deployer.yml
+  when: inventory_hostname != "local_web"
+
+- name: config php-fpm
+  include_tasks: phpfpm.yml
+  when: not php_bin.stat.exists
+
+- name: reload php-fpm
+  service:
+    name: php81-php-fpm
+    state: reloaded
+
+- name: mkdir laravel log under /var/log
+  file:
+    path: /var/log/application
+    state: directory
+    owner: root
+    group: root
+    mode: 0777
+    recurse: yes
+  when: inventory_hostname != "local_web"

@@ -1,0 +1,4 @@
+localhost:
+  local: ture
+  stage: staging
+  deploy_path: /var/www/site

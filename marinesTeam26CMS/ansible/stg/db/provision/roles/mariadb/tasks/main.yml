@@ -1,0 +1,20 @@
+---
+- name: copy maria repo
+  copy:
+    src: mariadb.repo
+    dest: /etc/yum.repos.d/mariadb.repo
+
+- name: install MariaDB 10.6
+  dnf:
+    name: [
+      MariaDB-server,
+      MariaDB-client,
+      MariaDB-backup
+    ]
+    state: present
+
+- name: start MariaDB and enable at boot
+  service:
+    name: mariadb
+    state: started
+    enabled: yes
