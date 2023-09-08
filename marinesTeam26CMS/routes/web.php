@@ -46,6 +46,7 @@ Route::group(['middleware' => [CheckRoute1::class]], function () {
   Route::get('log', [LogQueryController::class, 'index'])->name('log.index');
   Route::resource("user", UserController::class);
 });
-// \URL::forceScheme('https');
+//  \URL::forceScheme('https');
 // Route::get("movies", [MovieController::class, 'index']);
 \URL::forceScheme('http');
+//test khoa
