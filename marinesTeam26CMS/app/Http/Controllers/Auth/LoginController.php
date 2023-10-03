@@ -37,6 +37,8 @@ class LoginController extends Controller
   {
     $field = 'user_id';
     $request->merge([$field => $request->email]);
+    // $request->merge(['user'=> $request->email]);
+    // dd($request->only('user', 'password'));
     if (auth()->attempt($request->only($field, 'password'))) {
       Session::put('user_id', $request->email);
       return redirect('/mypage');
@@ -47,5 +49,6 @@ class LoginController extends Controller
   }
   public function user_id() {
     return "user_id";
+    
   }
 }

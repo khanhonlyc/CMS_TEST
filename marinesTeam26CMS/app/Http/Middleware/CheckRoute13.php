@@ -14,6 +14,8 @@ class CheckRoute13
    */
   public function handle(Request $request, Closure $next)
   {
+    // dd(Auth::user()->permissson);
+    // dd(Auth::user()->permission);
     if(in_array(Auth::user()->permission,[1,3])) {
       return $next($request);
     }

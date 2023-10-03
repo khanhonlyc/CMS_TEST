@@ -33,6 +33,7 @@ class MovieController extends Controller
    */
   public function index(Request $request)
   {
+    //  dd( $host = request()->getHttpHost());
     $datas = $request->all();
     $userid = Auth::user()->user_id;
     $username = Auth::user()->user_name;
@@ -54,7 +55,8 @@ class MovieController extends Controller
     }
     // $movies1 = DB::table('movie')->where('status', 'like', $status)->orderBy('created_at', 'desc')->paginate(5);
     // $movies1 = Movie::where('status', 'like', $status)->orderBy('created_at', 'desc')->paginate(5);
-    // return $movies1;
+    // $test = str_replace('storage','public',$movies1[2]->thumbnail_url);
+    // return $test;
     if ($typeCode) {
       $movies = $movies->where('movie_type_code', $typeCode);
     }

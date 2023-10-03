@@ -14298,6 +14298,10 @@ body .page-tag .active > .page-link {
   display: none;
 }
 
+.noneactive {
+  background-color: #dcdcdc;
+}
+
 .top-page-index .noneactive {
   background-color: #dcdcdc;
 }

@@ -25,6 +25,7 @@ class TopPageController extends Controller
   public function top_page_type(Request $request, $id)
   {
     $datas = $request->all();
+     //dd($datas);
     $userid = Auth::user()->user_id;
     $username = Auth::user()->user_name;
     $keyword = array_key_exists("keyword", $datas) ? $datas['keyword'] : '';

@@ -49,4 +49,4 @@ Route::group(['middleware' => [CheckRoute1::class]], function () {
 //  \URL::forceScheme('https');
 // Route::get("movies", [MovieController::class, 'index']);
 \URL::forceScheme('http');
-//test khoa
+//t

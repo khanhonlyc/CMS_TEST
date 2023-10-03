@@ -134,15 +134,19 @@
           </thead>
           <tbody>
             @foreach ($movies as $key => $movie )
-              <tr class="@if($movie->status == 1) active @endif">
-                <td class="@if($movie->status == 0) bg-gray @endif">{{ $movie->id }}</td>
-                <td class="@if($movie->status == 0) bg-gray @endif">{{ $movie->sort_no }}</td>
-                <td class="@if($movie->status == 0) bg-gray @endif">
+            @php
+              $bg = $movie->status == 0 ? 'bg-gray':'';
+              $bg1 = $movie->status == 1 ? 'active':'noneactive';
+            @endphp
+              <tr class="{{$bg1}}">
+                <td class="">{{ $movie->id }}</td>
+                <td class="">{{ $movie->sort_no }}</td>
+                <td class="">
                   <div class="icon">
                     <img src={{ $movie->thumbnail_url }} alt="">
                   </div>
                 </td>
-                <td class="@if($movie->status == 0) bg-gray @endif">
+                <td class="">
                   <div class="text">
                     <span class="date">{{ $movie->publish_start }}　～　{{ $movie->publish_end }}</span>
                     <h3>@if($movie->movie_type_code == 2) <span style=" background-color: #d9534f; color: #fff; font-size: 15px; text-transform: uppercase; margin-right: 5px; display: inline-block; padding: 0 10px; ">LIVE</span>@else <span style=" background-color: #4c3f3e; color: #fff; font-size: 15px; text-transform: uppercase; margin-right: 5px; display: inline-block; padding: 0 10px; ">VOD</span> @endif<a href="{{ route('content.show', $movie->id) }}">{{ $movie->title }}</a></h3>
@@ -169,7 +173,7 @@
                     </div>
                   </div>
                 </td>
-                <td class="@if($movie->status == 0) bg-gray @endif">
+                <td class="">
                   <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $movie->id }}" class="preview"><img style=" width: 20px; " <img style=" width: 20px; " src="{{ secure_asset('assets\icon\magnifying-glass-solid.svg') }}" alt="magnifying"></a>
                 </td>
               </tr>
